@@ -1,26 +1,20 @@
 <!DOCTYPE html>
-<html lang="th">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>วันเกิด 9 เดือนก่อนของคุณ</title>
-  <link href="style.css" rel="stylesheet" />
-  <script src="https://cdn.tailwindcss.com"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>วันสร้างตัว</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
 </head>
-<body class="bg-gray-100 flex flex-col items-center justify-center min-h-screen p-4">
-  <div class="bg-white rounded-xl shadow-xl p-6 w-full max-w-lg">
-    <h1 class="text-2xl font-bold text-center mb-4">วันสร้างตัว</h1>
+<body>
+  <h1>วันสร้างตัวของคุณคือวันไหน?</h1>
+  <p>ใส่วันเกิดของคุณ แล้วเราจะบอกว่า 9 เดือนก่อนหน้านั้นเกิดอะไรขึ้น!</p>
+  <!-- สวัสดีเพชร -->
+  <input type="date" id="birthDate">
+  <button onclick="calculate()">หาวันสร้างตัว</button>
 
-    <label class="block text-sm font-medium mb-2">Input your birth day</label>
-    <input id="dob" type="date" class="w-full border p-2 rounded mb-4" />
+  <div id="result"></div>
 
-    <button onclick="analyze()" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full">
-      Submit!
-    </button>
-
-    <div id="result" class="mt-6 text-gray-700"></div>
-  </div>
-
-  <script src="script.js"></script>
 </body>
 </html>
