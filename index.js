@@ -7,7 +7,6 @@ const app = express();
 app.use(cors({ origin: '*' }));
 app.use(express.json());
 
-const PORT = 3000;
 const geminiKey = process.env.GEMINI_API_KEY;
 
 app.post('/api/ask', async (req, res) => {
@@ -28,7 +27,6 @@ app.post('/api/ask', async (req, res) => {
       }
     );
 
-    // ดึงข้อความตอบกลับ
     const reply = response.data.candidates?.[0]?.content?.parts?.[0]?.text || "No response";
     res.json({ reply });
   } catch (err) {
@@ -37,6 +35,6 @@ app.post('/api/ask', async (req, res) => {
   }
 });
 
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
+app.listen(3000, () => {
+  console.log(`Server is running on http://localhost:3000`);
 });

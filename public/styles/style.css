@@ -1,15 +1,43 @@
-body {
-  font-family: sans-serif;
-  background-color: #6fa7d5; /* ฟ้าอ่อน */
-  color: #033f64;
-  padding: 40px 20px;
-  max-width: 600px;
-  margin: auto;
+html, body {
+  font-family: 'Prompt', sans-serif;
+  height: 100%;               /* ให้เต็มหน้าจอ */
+  margin: 0;
+  display: flex;              /* ใช้ flexbox */
+  align-items: center;        /* จัดกลางแนวตั้ง */
+  justify-content: center;    /* จัดกลางแนวนอน */
+  background-color: #6fa7d5;  /* พื้นหลังเบาๆ ก็ได้ */
+}
+.prompt-regular {
+  font-family: "Prompt", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.container {
+  background-color: white;
+  width: 400px;       /* 🔒 ล็อคความกว้าง */
+  height: 500px;      /* 🔒 ล็อคความสูง */
+  max-height: 75%;
+  max-width: 75%;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   text-align: center;
-  min-height: 100vh;
+  overflow: auto;     /* ให้スクรอลได้ถ้าเนื้อหาล้น */
+}
+.action {
+  display: flex; 
+  flex-direction: column; /* เปลี่ยนแนวจากแถว (row) เป็นแนวตั้ง (column) */
+  justify-content: center; 
+  align-items: center; 
+  gap: 10px; 
+  margin-top: 20px;
 }
 
 h1 {
+  font-family: "Prompt", sans-serif;
+  font-weight: 600;
+  font-style: normal;
   font-size: 3.2em;
   margin-bottom: 10px;
 }
@@ -19,6 +47,7 @@ p {
   margin-bottom: 30px;
   color: #333;
 }
+
 
 input[type="date"] {
   font-size: 1em;
@@ -31,22 +60,24 @@ input[type="date"] {
 
 
 button {
+  font-family: "Prompt", sans-serif;
   font-size: 1em;
-  padding: 10px 20px;
+  padding: 6px 16px;
   margin-top: 10px;
-  border: 1px solid #333;
-  background-color: white;
+  background-color: #6fa7d5;
+  border-color: #b6e2f9;
+  color : white;
   cursor: pointer;
   border-radius: 6px;
   transition: background-color 0.2s ease;
 }
 
 button:hover {
-  background-color: #e0e0e0;
+  background-color: #b6e2f9;
 }
 
 #result {
-  margin-top: 30px;
+  margin-top: 10px;
   font-size: 0.95em;
   color: #333;
   /* background-color: #ffffffa8; */
