@@ -1,16 +1,16 @@
-# 🎂 วันสร้างตัว - Birth Conception Calculator
+# วันสร้างตัว
 
 เว็บแอปพลิเคชันที่คำนวณวัน "สร้างตัว" (วันปฏิสนธิ) จากวันเกิด และบอกวันสำคัญที่ใกล้เคียง พร้อมคำคมสร้างสรรค์
 
-## ✨ Features
+## Features
 
-- 🧮 คำนวณวันปฏิสนธิ (9 เดือนก่อนวันเกิด)
-- 📅 เชื่อมต่อกับ Google Gemini AI เพื่อหาวันสำคัญ
-- 🎯 แสดงวันพิเศษที่ใกล้เคียงที่สุด
-- 💭 สร้างคำคมสร้างสรรค์สำหรับวันนั้น
-- 🌐 รองรับการใช้งานผ่าน API
+- คำนวณวันปฏิสนธิ (9 เดือนก่อนวันเกิด)
+- เชื่อมต่อกับ Google Gemini AI เพื่อหาวันสำคัญ
+- แสดงวันพิเศษที่ใกล้เคียงที่สุด
+- สร้างคำคมสร้างสรรค์สำหรับวันนั้น
+- รองรับการใช้งานผ่าน API
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 
@@ -63,7 +63,7 @@
 ### AI Integration
 - **Google Gemini Pro** - AI model for date analysis and quote generation
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 StupidHackathon9/
@@ -80,7 +80,7 @@ StupidHackathon9/
         └── script.js       # Frontend JavaScript
 ```
 
-## 🔧 API Endpoints
+## API Endpoints
 
 ### POST `/api/ask`
 ส่ง prompt ไปยัง Gemini AI และรับผลลัพธ์กลับมา
@@ -99,7 +99,7 @@ StupidHackathon9/
 }
 ```
 
-## 🎯 How It Works
+## How It Works!!!
 
 1. **Input**: ผู้ใช้กรอกวันเกิด
 2. **Calculation**: ระบบคำนวณวันปฏิสนธิ (ลบ 9 เดือน)
@@ -109,13 +109,13 @@ StupidHackathon9/
    - สร้างคำคมสร้างสรรค์
 4. **Display**: แสดงผลลัพธ์ในรูปแบบที่อ่านง่าย
 
-## 🔑 Environment Variables
+## Environment Variables
 
 | Variable | Description | Required |
 |----------|-------------|----------|
-| `GEMINI_API_KEY` | Google Gemini API Key | ✅ |
+| `GEMINI_API_KEY` | Google Gemini API Key | / |
 
-## 🚀 Deployment
+## Deployment
 
 ### Local Development
 ```bash
@@ -128,13 +128,5 @@ node index.js
 1. Deploy to your preferred platform (Heroku, Vercel, Railway, etc.)
 2. Set environment variables
 3. Update frontend API endpoint URL if needed
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
 
 **Made with วันสร้างตัว group's for StupidHackathon9**
