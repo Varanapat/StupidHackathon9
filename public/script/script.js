@@ -1,68 +1,93 @@
-// async function askModel(prompt) {
-//     const res = await fetch("http://localhost:11434/api/generate", {
-//         method: "POST",
-//         headers: {
-//             "Content-Type": "application/json"
-//         },
-//         body: JSON.stringify({
-//             model: "llama3",
-//             prompt: prompt,
-//             stream: false
-//         })
-//     });
+async function ask_AI(birth) {
+  const p_nine_birth = get_str_nine_month(birth);
 
-//     const data = await res.json();
-//     return data.response;
-// }
+  const prompt = `วันนี้คือวันที่ ${p_nine_birth}.
+1. วันนี้ตรงกับวันพิเศษ (เช่น วันหยุด, วันสำคัญ, วันประหลาด ฯลฯ) หรือไม่? 
+    - ถ้าใช่ ให้ระบุชื่อวันนั้น และคำอธิบายสั้น ๆ
+2. ถ้าไม่ใช่วันพิเศษ ให้บอกว่า "ใกล้ที่สุดคือวันอะไร" และจะถึงในอีกกี่วัน
+3. ให้คำคมแบบสั้น ๆ ที่ "เกี่ยวข้องกับวันพิเศษที่จะมาถึง ดูโง่แต่สร้างสรรค์" เพื่อลงท้าย เช่น "ถ้าไม่มีอะไรทำ ก็ลองหายใจดู"
 
-// async function sendPrompt() {
-//     const birth = document.getElementById('birthday').value;
+กรุณาตอบกลับด้วยโครงสร้าง JSON ดังนี้:
 
-//     if (!birth) return alert('Try again');
+{
+  "isSpecialDay": true/false,
+  "todaySpecial": {
+    "name": "...",
+    "description": "..."
+  },
+  "nextClosestSpecialDay": {
+    "name": "...",
+    "date": "DD-MM-YYYY",
+    "daysUntil": ...
+  },
+  "quoteOfTheDay": "..."
+}
 
-//     const p_birth = new Date(birth);
-//     p_birth.setMonth(p_birth.getMonth() - 9);
+ตอบกลับเป็น JSON เท่านั้น ไม่ต้องมี markdown หรือ backticks`;
 
-//     const prompt_birth_message =
-//         `ตอบกลับเป็นภาษาไทย โดยใช้ประโยคไม่เกิน 3 บรรทัด:
+  const res = await fetch('http://localhost:3000/api/ask', {
 
-// 1. วันที่ ${p_birth} ตรงกับวันในปฏิทินจันทรคติว่าอย่างไร
-// 2. วันนั้นตรงกับวันหยุดไทยหรือวันพิเศษใดหรือไม่
-// 3. แต่งคำคม 1 บรรทัดเกี่ยวกับวันนี้
-// `
-//     ;
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ prompt })
 
-//     try {
-//         document.getElementById('result').innerText = "กำลังถาม...";
-//         const p_result = await askModel(prompt_birth_message);
-//         document.getElementById('result').innerText += `<p><strong>วันสำคัญที่ใกล้เคียง:</strong> ${p_result} </p>`;
-//     } catch (e) {
-//         document.getElementById('result').innerText = 'เกิดข้อผิดพลาด: ' + e.message;
-//         console.log('Failed', e);
-//     }
-// }
+  });
 
-async function askAI() {
-    const birth = document.getElementById('birthday').value;
-    if (!birth) return alert('Try again');
+  const data = await res.json();
+  const reply = data.reply || data.error;
 
-    const p_birth = new Date(birth);
-    p_birth.setMonth(p_birth.getMonth() - 9);
+  try {
+    let cleanReply = reply.replace(/```json\s*/g, '').replace(/```\s*$/g, '').trim();
 
-    const prompt =
-        `ตอบกลับเป็นภาษาไทย โดยใช้ประโยคไม่เกิน 3 บรรทัด:
+    return JSON.parse(cleanReply);
+  } catch (e) {
 
-1. วันที่ ${p_birth} ตรงกับวันในปฏิทินจันทรคติว่าอย่างไร
-2. วันนั้นตรงกับวันหยุดไทยหรือวันพิเศษใดหรือไม่
-3. แต่งคำคม 1 บรรทัดเกี่ยวกับวันนี้
-`;
+    return { error: reply };
 
-    const res = await fetch('http://localhost:3000/api/ask', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ prompt })
-    });
+  }
+}
 
-    const data = await res.json();
-    document.getElementById('result').innerText = data.reply || data.error;
+function get_str_nine_month(birth) {
+  const nine_month_past = new Date(birth);
+  nine_month_past.setMonth(nine_month_past.getMonth() - 9);
+
+  return nine_month_past.toLocaleString('th-TH');
+}
+
+function get_birth() {
+  const dob = document.getElementById('birthday').value;
+
+  return (dob) ? dob : alert('ลองใหม่นะจ้ะคนดี');
+}
+
+async function show_calculated_date() {
+  const dob = get_birth();
+  if (!dob) return;
+
+  try {
+    const importantEvent = await ask_AI(dob);
+
+    let res = document.getElementById('result').innerHTML;
+
+    res += `วันสร้างตัว: ${get_str_nine_month(dob)}<br>`;
+
+    if (importantEvent.error) {
+      res += `<p>เกิดข้อผิดพลาด: ${importantEvent.error}</p>`;
+    } 
+    
+    else if (importantEvent.isSpecialDay) {
+      res += `<p><strong>วันสำคัญ: ${importantEvent.todaySpecial.name}</strong></p>`;
+    } 
+    
+    else {
+      res += `<p><strong>วันสำคัญที่ใกล้เคียง: ${importantEvent.nextClosestSpecialDay.name}</strong></p>
+      ห่างจากวันเกิด: ${importantEvent.nextClosestSpecialDay.daysUntil} วัน`;
+    }
+
+    res += `<br><em>${importantEvent.quoteOfTheDay}</em></br>`;
+
+    document.getElementById('result').innerHTML = res;
+  } catch (error) {
+    document.getElementById('result').innerHTML += `<p>เกิดข้อผิดพลาด: ${error.message}</p>`;
+  }
 }
