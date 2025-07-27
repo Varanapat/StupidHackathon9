@@ -20,6 +20,21 @@
     <div class="action">
       <input type="date" id="birthday"/>
       <button onclick="show_calculated_date()">เกิดมายังไงนะ</button>
-    <div id="result"></div>
+      <div id="result"></div>
+    <button onclick="show_world_saving_prediction()" id="worldSavingBtn" style="display: none;">ทำนายว่ากู้โลกได้ไหม</button>
+
+    
+    <!-- World Saving Prediction Modal -->
+    <div id="worldSavingModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <div class="modal-header">
+          <h2>ตัวอ่อนอย่างผมจะกู้โลกแบบพี่ได้ไหมครับ</h2>
+        </div>
+        <div class="modal-body">
+          <div id="worldSavingResult"></div>
+        </div>
+      </div>
+    </div>
 </body>
 </html>
