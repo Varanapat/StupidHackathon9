@@ -27,10 +27,12 @@ async function ask_AI(birth) {
 
 function get_special_birth_prompt(minus_birth) {
   const text = `วันนี้คือวันที่ ${minus_birth}.
-1. วันนี้ตรงกับวันพิเศษ (เช่น วันหยุด, วันสำคัญ, วันประหลาด ฯลฯ) หรือไม่? 
-    - ถ้าใช่ ให้ระบุชื่อวันนั้น และคำอธิบายสั้น ๆ
-2. ถ้าไม่ใช่วันพิเศษ ให้บอกว่า "ใกล้ที่สุดคือวันอะไร" และจะถึงในอีกกี่วัน
-3. ให้คำคมแบบสั้น ๆ ที่ "เกี่ยวข้องกับวันพิเศษที่จะมาถึง ดูโง่แต่สร้างสรรค์" เพื่อลงท้าย เช่น "ถ้าไม่มีอะไรทำ ก็ลองหายใจดู" และอยากให้มีความเชื่อมโยงถึงเหตุผล ทำไมถึงมีลูกในวันนี้
+สิ่งที่ควรทำ
+1. ให้หาวันที่ตรงกับวันนั้น หากไม่เจอให้ตอบกลับวันที่ใกล้เคียงที่สุด
+2. คำคมอยากได้แบบโง่แต่ดูสร้างสรรค์ และเกี่ยวกับข้องกับวันสำคัญนั้น เช่น ถ้าวันลอยกระทง ก็จะเป็นอะไรที่สื่อถึงวันนั้น เช่น พระจันทร์
+ 
+สิ่งที่ไม่ควรทำ
+1. คำคมที่ออกแนว 18+
 
 กรุณาตอบกลับด้วยโครงสร้าง JSON ดังนี้:
 
@@ -57,12 +59,13 @@ function get_str_nine_month(birth) {
   const nine_month_past = new Date(birth);
   nine_month_past.setMonth(nine_month_past.getMonth() - 9);
 
-  const day = nine_month_past.getDay().toString().padStart(2, "0");
-  const month = nine_month_past.getMonth().toString().padStart(2, "0");
+  const day = nine_month_past.getDate().toString().padStart(2, "0");
+  const month = (nine_month_past.getMonth() + 1).toString().padStart(2, "0"); // เพิ่ม +1 เพราะ getMonth() เริ่มจาก 0
   const year = nine_month_past.getFullYear().toString().padStart(4, "0");
 
   return day + '/' + month + '/' + year;
 }
+
 
 function get_birth() {
   const dob = document.getElementById('birthday').value;
