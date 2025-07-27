@@ -1,89 +1,107 @@
 html, body {
-  font-family: 'Prompt', sans-serif;
-  height: 100%;               /* ให้เต็มหน้าจอ */
-  margin: 0;
-  display: flex;              /* ใช้ flexbox */
-  align-items: center;        /* จัดกลางแนวตั้ง */
-  justify-content: center;    /* จัดกลางแนวนอน */
-  background-color: #6fa7d5;  /* พื้นหลังเบาๆ ก็ได้ */
-}
-.prompt-regular {
-  font-family: "Prompt", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-}
-
-.container {
-  background-color: white;
-  width: 400px;       /* 🔒 ล็อคความกว้าง */
-  height: 500px;      /* 🔒 ล็อคความสูง */
-  max-height: 75%;
-  max-width: 75%;
-  padding: 2rem;
-  border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  overflow: auto;     /* ให้スクรอลได้ถ้าเนื้อหาล้น */
-}
-.action {
-  display: flex; 
-  flex-direction: column; /* เปลี่ยนแนวจากแถว (row) เป็นแนวตั้ง (column) */
-  justify-content: center; 
-  align-items: center; 
-  gap: 10px; 
-  margin-top: 20px;
-}
-
-h1 {
-  font-family: "Prompt", sans-serif;
-  font-weight: 600;
-  font-style: normal;
-  font-size: 3.2em;
-  margin-bottom: 10px;
-}
-
-p {
-  font-size: 1.1em;
-  margin-bottom: 30px;
-  color: #333;
-}
-
-
-input[type="date"] {
-  font-size: 1em;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  width: 60%;
-  max-width: 250px;
-}
-
-
-button {
-  font-family: "Prompt", sans-serif;
-  font-size: 1em;
-  padding: 6px 16px;
-  margin-top: 10px;
-  background-color: #6fa7d5;
-  border-color: #b6e2f9;
-  color : white;
-  cursor: pointer;
-  border-radius: 6px;
-  transition: background-color 0.2s ease;
-}
-
-button:hover {
-  background-color: #b6e2f9;
-}
-
-#result {
-  margin-top: 10px;
-  font-size: 0.95em;
-  color: #333;
-  /* background-color: #ffffffa8; */
-  padding: 15px 20px;
-  /* border-left: 4px solid #6ba5ff; */
-  /* border-radius: 4px; */
-  display: inline-block;
-  text-align: center;
-}
+    font-family: 'Prompt', sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url("../../src/background/34692.jpg"); /* พื้นหลังยังอยู่ */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: #333;
+  }
+  
+  .container {
+    width: 100%;
+    max-width: 700px;
+    padding: 10px 10px;
+    box-sizing: border-box;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.35); /* กล่องโปร่งใสเบา ๆ */
+    backdrop-filter: blur(6px);                /* เบลอพื้นหลัง */
+    border-radius: 16px;
+  }
+  
+  h1 {
+    font-size: 100px;
+    font-weight: 900;
+    margin-bottom: 5px;
+    color: #ffffff;
+    text-shadow:
+      -1px -1px 0 #000,
+       1px -1px 0 #000,
+      -1px  1px 0 #000,
+       1px  1px 0 #000;
+  }
+  
+  p {
+    font-size: 1.1rem;
+    font-weight: 400;
+    margin-bottom: 24px;
+    margin-top: 10px;
+    color: #ffffff;
+      text-shadow:
+      -1px -1px 0 #000,
+       1px -1px 0 #000,
+      -1px  1px 0 #000,
+       1px  1px 0 #000;
+  }
+  
+  input[type="date"] {
+    appearance: none;
+    -webkit-appearance: none;  /* ปิด default ของบางเบราว์เซอร์ */
+    background-color: #ffffffcc;
+    color: #333;
+    font-size: 1rem;
+    padding: 12px 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    width: 100%;
+    max-width: 280px;
+    box-sizing: border-box;
+  }
+  
+  input[type="date"]:hover {
+    border-color: #888;
+  }
+  
+  input[type="date"]:focus {
+    border-color: #6fa7d5;
+    box-shadow: 0 0 0 3px rgba(111, 167, 213, 0.3);
+  }
+  
+  
+  button {
+    font-size: 1rem;
+    padding: 10px 16px;
+    margin-top: 15px;
+    background-color: #333;
+    border: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: background-color 0.2s ease;
+  }
+  
+  button:hover {
+    background-color: #555;
+  }
+  
+  .action {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+  
+  #result {
+    margin-top: 20px;
+    font-size: 1rem;
+    color: #222;
+  }
